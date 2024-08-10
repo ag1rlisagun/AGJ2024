@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://yrdtwv8cdyl1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1160g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uer7p"]
+
+[node name="ElevatorLevel" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.879192, 0.476468, 0, -0.476468, 0.879192, 0, 2.73218, 1.74187)
+fov = 101.25
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_1160g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_uer7p")
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 3.99269, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_1160g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling"]
+mesh = SubResource("BoxMesh_uer7p")
+
+[node name="Wall1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 5, -2, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_1160g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168958, 0, 0)
+mesh = SubResource("BoxMesh_uer7p")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 5, 2, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_1160g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_uer7p")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.00581194, 0, -4.99992, 0, 5, 0, 0.999983, 0, -0.0290598, 0.0723448, 1.9622, 2.24964)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_1160g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall3"]
+mesh = SubResource("BoxMesh_uer7p")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.00581194, 0, -4.99992, 0, 5, 0, 0.999983, 0, -0.0290598, 0.0723448, 1.9622, -2.33338)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_1160g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall4"]
+mesh = SubResource("BoxMesh_uer7p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 0)
+light_color = Color(0.219608, 1, 0.137255, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99957, 0.0293174, 0, -0.0293174, 0.99957, -0.196619, 2.28487, 1.08103)
+light_color = Color(0.219608, 1, 0.137255, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.994237, 0.00314285, -0.107155, 5.11307e-19, 0.99957, 0.0293174, 0.107201, 0.0291484, -0.99381, -0.196619, 2.28487, -0.354739)
+light_color = Color(0.219608, 1, 0.137255, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.00881388, -0.0293162, 0.999531, -3.5962e-11, 0.99957, 0.0293174, -0.999961, -0.0002584, 0.00881009, 0.543927, 2.28487, -0.354739)
+light_color = Color(0.219608, 1, 0.137255, 1)
+directional_shadow_mode = 0
+sky_mode = 1
