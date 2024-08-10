@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bp5ksthpbmcn8"
+path="res://.godot/imported/circle.bmp-676a66ea776f25c1b3ff7dd93e17915a.res"
+
+[deps]
+
+source_file="res://UIElements/UIimages/circle.bmp"
+dest_files=["res://.godot/imported/circle.bmp-676a66ea776f25c1b3ff7dd93e17915a.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

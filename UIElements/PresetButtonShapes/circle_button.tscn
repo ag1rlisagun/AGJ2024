@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct1cn2meqhpns"]
+
+[ext_resource type="BitMap" uid="uid://bp5ksthpbmcn8" path="res://UIElements/UIimages/circle.bmp" id="1_q5gno"]
+
+[node name="CircleButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_click_mask = ExtResource("1_q5gno")

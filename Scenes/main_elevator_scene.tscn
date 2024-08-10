@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=14 format=3 uid="uid://dm8baebyih4ty"]
 
+[ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
+[ext_resource type="PackedScene" uid="uid://ct1cn2meqhpns" path="res://UIElements/PresetButtonShapes/circle_button.tscn" id="2_qrgbc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
 
@@ -29,6 +31,7 @@ albedo_color = Color(0, 0, 0, 1)
 albedo_color = Color(0, 0.576471, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_qlp68")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -274,3 +277,14 @@ transform = Transform3D(0.194543, 0.0287572, -0.980472, -2.25094e-11, 0.99957, 0
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 directional_shadow_mode = 0
 sky_mode = 1
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="ButtonNumber1" parent="UI" instance=ExtResource("2_qrgbc")]
+offset_left = 323.0
+offset_top = 528.0
+offset_right = 1181.0
+offset_bottom = 1388.0
+scale = Vector2(0.1, 0.1)
+
+[connection signal="pressed" from="UI/ButtonNumber1" to="." method="_on_button_number_1_pressed"]
