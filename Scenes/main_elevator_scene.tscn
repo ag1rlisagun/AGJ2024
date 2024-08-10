@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=12 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
 
@@ -14,6 +14,19 @@ sky = SubResource("Sky_003nq")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hleeg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hmvy2"]
+
+[sub_resource type="Skin" id="Skin_qhkxu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x78ay"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jdqc7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heey6"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
+albedo_color = Color(0, 0.576471, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -96,17 +109,106 @@ shape = SubResource("BoxShape3D_hleeg")
 mesh = SubResource("BoxMesh_hmvy2")
 
 [node name="Wall5" type="StaticBody3D" parent="World/Elevator"]
-transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -5, 2, -3)
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -4.99997, 1.99529, -2.99901)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
 shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.4284e-23, 8.88178e-16, 1.08899e-23, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_hmvy2")
 
+[node name="touchscreen" type="StaticBody3D" parent="World/Elevator/Wall5"]
+transform = Transform3D(0.034283, -3.49401e-21, -5.68434e-14, 2.06795e-25, 0.170857, 2.14711e-22, 2.77556e-17, -4.75682e-24, 0.13833, 0.497523, 0.100324, -0.412918)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall5/touchscreen"]
+transform = Transform3D(1, 1.69407e-21, 0, 4.1359e-25, 1, -4.15922e-23, -5.55112e-17, -3.24555e-23, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5/touchscreen"]
+transform = Transform3D(1, 1.01644e-20, -1.36424e-12, -2.56426e-23, 1, -3.85699e-22, -1.88738e-15, 2.04841e-23, 0.999999, -0.0426941, 2.38419e-07, -0.00602794)
+mesh = SubResource("BoxMesh_hmvy2")
+skin = SubResource("Skin_qhkxu")
+surface_material_override/0 = SubResource("StandardMaterial3D_x78ay")
+
+[node name="button1" type="StaticBody3D" parent="World/Elevator/Wall5"]
+transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5/button1"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -9.41469e-14, 0.0356698, -3.43004e-09, -7.80394e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513592, -0.0329033, -0.398239)
+mesh = SubResource("CylinderMesh_jdqc7")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Elevator/Wall5/button1"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.19016e-13, 0.0356698, -3.43004e-09, -9.70646e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513996, -0.034, -0.447275)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Elevator/Wall5/button1"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515278, -0.0327724, -0.494947)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="button2" type="StaticBody3D" parent="World/Elevator/Wall5"]
+transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5/button2"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.43004e-09, -8.21753e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.514, -0.08, -0.398)
+mesh = SubResource("CylinderMesh_jdqc7")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Elevator/Wall5/button2"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Elevator/Wall5/button2"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="button3" type="StaticBody3D" parent="World/Elevator/Wall5"]
+transform = Transform3D(0.999288, 0, 0, -5.62483e-23, 0.999288, -1.90429e-22, 8.88178e-16, 4.34399e-22, 0.999288, -0.0419855, -0.0292218, 0.0345802)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.43004e-09, -8.21753e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.514, -0.08, -0.398)
+mesh = SubResource("CylinderMesh_jdqc7")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="World/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.36779e-13, 0.0356698, -3.43004e-09, -1.10299e-22, 3.72231e-23, -9.4369e-16, 0.0254264, 0.513414, -0.129968, -0.446644)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="helpbutton" type="StaticBody3D" parent="World/Elevator/Wall5"]
+transform = Transform3D(0.0342269, -3.54695e-21, -1.06581e-13, 3.10193e-25, 0.170577, 2.27941e-22, 4.16334e-17, -1.45114e-24, 0.138104, 0.497522, -0.226693, -0.412918)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5/helpbutton"]
+transform = Transform3D(1.12601, 0, 0, -3.80503e-23, 0.227423, -1.35585e-22, -4.996e-16, -1.01759e-23, 0.195669, -0.0427246, 0.368685, 0.358739)
+mesh = SubResource("BoxMesh_hmvy2")
+skin = SubResource("Skin_qhkxu")
+surface_material_override/0 = SubResource("StandardMaterial3D_tv0a1")
+
 [node name="Wall6" type="StaticBody3D" parent="World/Elevator"]
-transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 2.08165e-12, 5.5, -3)
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 0.00353432, 5.5, -3.00042)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
