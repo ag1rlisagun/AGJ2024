@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=21 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
+[ext_resource type="AudioStream" uid="uid://owwx6ntbrdjx" path="res://Assets/Audio/SFX/Elevator Ding.wav" id="2_ly776"]
 [ext_resource type="PackedScene" uid="uid://ct1cn2meqhpns" path="res://UIElements/PresetButtonShapes/circle_button.tscn" id="2_qrgbc"]
+[ext_resource type="AudioStream" uid="uid://bb7wwij68uqrp" path="res://Assets/Audio/SFX/Elevator Key Press.wav" id="3_1kshf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
 
@@ -30,8 +32,28 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
 albedo_color = Color(0, 0.576471, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_geh5m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ewej"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6n377"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ddo3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03lmp"]
+
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_qlp68")
+
+[node name="SFXPlayers" type="Node" parent="."]
+
+[node name="ElevatorDing" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("2_ly776")
+
+[node name="KeyPress" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("3_1kshf")
+
+[node name="MusicPlayers" type="Node" parent="."]
 
 [node name="World" type="Node3D" parent="."]
 
@@ -280,11 +302,112 @@ sky_mode = 1
 
 [node name="UI" type="Node2D" parent="."]
 
-[node name="ButtonNumber1" parent="UI" instance=ExtResource("2_qrgbc")]
-offset_left = 323.0
-offset_top = 528.0
-offset_right = 1181.0
-offset_bottom = 1388.0
-scale = Vector2(0.1, 0.1)
+[node name="NumberButtons" type="Node2D" parent="UI"]
 
-[connection signal="pressed" from="UI/ButtonNumber1" to="." method="_on_button_number_1_pressed"]
+[node name="ButtonNumber1" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 317.0
+offset_top = 540.0
+offset_right = 1175.0
+offset_bottom = 1400.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber2" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 404.0
+offset_top = 542.0
+offset_right = 1262.0
+offset_bottom = 1402.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber3" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 485.0
+offset_top = 538.0
+offset_right = 1343.0
+offset_bottom = 1398.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber4" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 324.0
+offset_top = 597.0
+offset_right = 1182.0
+offset_bottom = 1457.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber5" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 409.0
+offset_top = 601.0
+offset_right = 1267.0
+offset_bottom = 1461.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber6" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 492.0
+offset_top = 594.0
+offset_right = 1350.0
+offset_bottom = 1454.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber7" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 335.0
+offset_top = 652.0
+offset_right = 1193.0
+offset_bottom = 1512.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber8" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 417.0
+offset_top = 652.0
+offset_right = 1275.0
+offset_bottom = 1512.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber9" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 499.0
+offset_top = 652.0
+offset_right = 1357.0
+offset_bottom = 1512.0
+scale = Vector2(0.06, 0.06)
+
+[node name="ButtonNumber0" parent="UI/NumberButtons" instance=ExtResource("2_qrgbc")]
+offset_left = 425.0
+offset_top = 712.0
+offset_right = 1283.0
+offset_bottom = 1572.0
+scale = Vector2(0.06, 0.06)
+
+[node name="TouchScreen" type="Node2D" parent="UI"]
+
+[node name="Button" type="Button" parent="UI/TouchScreen"]
+offset_left = 333.0
+offset_top = 339.0
+offset_right = 459.0
+offset_bottom = 430.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_geh5m")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0ewej")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6n377")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7ddo3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_03lmp")
+
+[node name="HelpButton" type="Node2D" parent="UI"]
+
+[node name="Help" type="Button" parent="UI/HelpButton"]
+offset_left = 344.0
+offset_top = 714.0
+offset_right = 395.0
+offset_bottom = 763.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_geh5m")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0ewej")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6n377")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7ddo3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_03lmp")
+
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber1" to="." method="_on_button_number_1_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber2" to="." method="_on_button_number_2_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber3" to="." method="_on_button_number_3_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber4" to="." method="_on_button_number_4_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber5" to="." method="_on_button_number_5_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber6" to="." method="_on_button_number_6_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber7" to="." method="_on_button_number_7_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber8" to="." method="_on_button_number_8_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber9" to="." method="_on_button_number_9_pressed"]
+[connection signal="pressed" from="UI/NumberButtons/ButtonNumber0" to="." method="_on_button_number_0_pressed"]
+[connection signal="pressed" from="UI/HelpButton/Help" to="." method="_on_help_pressed"]
