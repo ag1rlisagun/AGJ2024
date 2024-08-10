@@ -26,6 +26,7 @@ directories/dtl_directory={}
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
 [display]
 
 window/size/viewport_width=1920
