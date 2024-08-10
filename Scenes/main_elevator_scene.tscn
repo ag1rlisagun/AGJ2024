@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=7 format=3 uid="uid://dm8baebyih4ty"]
+
+[ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
 
@@ -9,20 +11,164 @@ sky_material = SubResource("ProceduralSkyMaterial_qqoen")
 background_mode = 2
 sky = SubResource("Sky_003nq")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hleeg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hmvy2"]
+
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="World" type="Node3D" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Node3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource("Environment_cnwjf")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Node3D"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="World"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="Node3D/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="World/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Node3D/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="World/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, -4.09353e-16, 3.43488e-16, 3.43488e-16, 0.984808, 0.173648, -4.09353e-16, -0.173648, 0.984808, 2.08165e-12, 2.5, 2.08165e-12)
+script = ExtResource("1_uybvl")
+
+[node name="Elevator" type="Node3D" parent="World"]
+
+[node name="Floor" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Floor"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Ceiling" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 2.08165e-12, 4, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Ceiling"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall1" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, -3, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall2" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, 3, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall2"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall3" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(-4.37114e-08, -1.74393e-15, -5, 3.48787e-16, 5, -1.74394e-15, 1, -1.74393e-15, -2.18557e-07, 2.08165e-12, 2, 2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="Wall4" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 5, 2, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall4"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall5" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -5, 2, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall6" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 2.08165e-12, 5.5, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall6"]
+transform = Transform3D(1, 0, 7.29717e-09, 0, 1, 0, -3.33382e-11, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall7" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 3.5, 2.5, -3.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall7"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall8" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -3.5, 2.5, -3.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Wall8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall8"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Elevator"]
+transform = Transform3D(1, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 0)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D5" type="DirectionalLight3D" parent="World/Elevator"]
+transform = Transform3D(-0.999993, -3.96402e-05, -0.00365317, 0.00365338, -0.0108502, -0.999934, 4.50789e-11, -0.999941, 0.0108503, 0, 1.1587, 0)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="World/Elevator"]
+transform = Transform3D(1, 0, 0, 0, 0.99957, 0.0293174, 0, -0.0293174, 0.99957, -0.196619, 2.28487, 1.08103)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+light_energy = 0.758
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="World/Elevator"]
+transform = Transform3D(-0.994237, 0.00314285, -0.107155, 5.11307e-19, 0.99957, 0.0293173, 0.107201, 0.0291484, -0.99381, -0.196619, 2.28487, -0.354739)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="World/Elevator"]
+transform = Transform3D(0.00881388, -0.0293162, 0.999531, -3.5962e-11, 0.99957, 0.0293173, -0.999961, -0.0002584, 0.00881009, 0.543927, 2.28487, -0.354739)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D6" type="DirectionalLight3D" parent="World/Elevator"]
+transform = Transform3D(0.194543, 0.0287572, -0.980472, -2.25094e-11, 0.99957, 0.0293173, 0.980894, -0.00570348, 0.194459, -0.142693, 2.28487, -0.354739)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
