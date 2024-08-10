@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+
 # BUTTONS
 @onready var button_num_1 = $UI/NumberButtons/ButtonNumber1
 @onready var button_num_2 = $UI/NumberButtons/ButtonNumber2
@@ -26,7 +27,6 @@ func _process(delta):
 	pass
 
 # ELEVATOR BUTTONS
-
 func _on_button_number_1_pressed():
 	SFX_key_press.play()
 

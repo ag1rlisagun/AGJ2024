@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf3i601umbuxj"]
+
+[ext_resource type="Script" path="res://Scripts/RotatingObject.gd" id="1_8wcd3"]
+
+[node name="RotatingObject" type="RigidBody3D"]
+gravity_scale = 1.66533e-16
+script = ExtResource("1_8wcd3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
