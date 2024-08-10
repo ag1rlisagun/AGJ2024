@@ -59,3 +59,6 @@ func _on_button_number_0_pressed():
 
 func _on_help_pressed():
 	pass # Replace with function body.
+
+func _on_dino_pressed():
+	Dialogic.start_timeline("timeline")

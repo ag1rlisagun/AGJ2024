@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=26 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -33,6 +33,12 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
 albedo_color = Color(0, 0.576471, 0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s3e2u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u1br0"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sk1op"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_geh5m"]
 
@@ -271,6 +277,18 @@ shape = SubResource("BoxShape3D_hleeg")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall8"]
 mesh = SubResource("BoxMesh_hmvy2")
 
+[node name="Dino" type="StaticBody3D" parent="World/Elevator"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.33075e-10, 0, -7.61026e-10, 1, 0, 0.745098, 1.82648e-09)
+physics_material_override = SubResource("PhysicsMaterial_s3e2u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/Dino"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.42425e-16, 0, 3.88578e-16, 1, 2.16751, 0, -2.15781)
+shape = SubResource("SphereShape3D_u1br0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Dino"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18058, 0, -2.27652)
+mesh = SubResource("SphereMesh_sk1op")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Elevator"]
 transform = Transform3D(1, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 0)
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
@@ -408,6 +426,15 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_6n377")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_7ddo3")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_03lmp")
 
+[node name="DinoButton" type="Node2D" parent="UI"]
+
+[node name="Dino" parent="UI/DinoButton" instance=ExtResource("2_qrgbc")]
+offset_left = 1394.0
+offset_top = 773.0
+offset_right = 2252.0
+offset_bottom = 1633.0
+scale = Vector2(0.45, 0.35)
+
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber1" to="." method="_on_button_number_1_pressed"]
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber2" to="." method="_on_button_number_2_pressed"]
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber3" to="." method="_on_button_number_3_pressed"]
@@ -419,3 +446,4 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_03lmp")
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber9" to="." method="_on_button_number_9_pressed"]
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber0" to="." method="_on_button_number_0_pressed"]
 [connection signal="pressed" from="UI/HelpButton/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="UI/DinoButton/Dino" to="." method="_on_dino_pressed"]
