@@ -32,6 +32,8 @@ var current_state
 # new minigame (something we make in 2d)
 
 @onready var timer = $Timer
+@onready var camera_3d = $World/SubViewportContainer/SubViewport/Camera3D
+
 var escaping = false
 
 # BUTTONS
@@ -51,6 +53,7 @@ var escaping = false
 @onready var SFX_key_press = $SFXPlayers/KeyPress
 @onready var SFX_fail_laugh = $SFXPlayers/FailLaugh
 @onready var SFX_elevator_crash = $SFXPlayers/ElevatorCrash
+@onready var elevator_ding = $SFXPlayers/ElevatorDing
 
 # Music
 @onready var we_bossin_in_this_nova = $MusicPlayers/WeBossinInThisNova
@@ -69,14 +72,18 @@ func _process(delta):
 		else:
 			handle_escape()
 			
-	if Input.is_action_just_pressed("shake"):
-		await get_tree().create_timer(1).timeout
-		SFX_elevator_crash.play()
-		# SFX_fail_laugh.play()
-			
+
 func handle_escape():
 	escaping = true
 	timer.start()
+
+func start_dialog():
+	Dialogic.timeline_ended.connect(_on_timeline_ended)
+	Dialogic.start("my_timeline")
+
+func _on_timeline_ended():
+	Dialogic.timeline_ended.disconnect(_on_timeline_ended)
+	# do something else here
 
 const password = "1234"
 @onready var label = $UI/NumberButtons/Label
@@ -155,7 +162,8 @@ func _on_help_pressed():
 		label.text = ""
 
 func _on_dino_pressed():
-	Dialogic.start_timeline("dino_intro")
+	# Dialogic.start_timeline("dino_intro")
+	pass
 
 func _on_timer_timeout():
 	escaping = false
@@ -165,6 +173,14 @@ func choose_floor():
 		current_state = 1
 		we_bossin_in_this_nova.play()
 		await get_tree().create_timer(randf_range(3, 10)).timeout
+		SFX_elevator_crash.play()
+		await get_tree().create_timer(2).timeout
 		we_bossin_in_this_nova.stop()
-		Input.action_press("shake")
-		Input.action_release("shake")
+		camera_3d.apply_shake()
+		await get_tree().create_timer(3).timeout
+		elevator_ding.play()
+		Dialogic.start_timeline("dino_intro")
+		
+		
+		
+		
