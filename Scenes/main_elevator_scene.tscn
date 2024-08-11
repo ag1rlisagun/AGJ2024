@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=70 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://csk57wl3pid7w" path="res://DialogicCharacters/DinoChatter-4.png" id="10_3asup"]
 [ext_resource type="Texture2D" uid="uid://db2360hruoxxd" path="res://DialogicCharacters/DinoChatter-5.png" id="11_4mimj"]
 [ext_resource type="PackedScene" uid="uid://ddqrb42u0155w" path="res://Assets/3DAssets/Character/bertasaurus.fbx" id="15_2m1lw"]
+[ext_resource type="Texture2D" uid="uid://ccp2qvfmr7eks" path="res://Assets/2DAssets/black_screen.jpg" id="16_8b2qi"]
 [ext_resource type="PackedScene" uid="uid://b5qvqqffwjmr4" path="res://Assets/PremadeObjects/animated_elevator.tscn" id="16_pweqw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
@@ -67,6 +68,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_hrwyu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l0ib7"]
+blend_mode = 3
+light_mode = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_we380"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_8b2qi")
 }],
 "loop": true,
 "name": &"default",
@@ -345,7 +361,14 @@ scale = Vector2(2.33974, 3.47138)
 skew = -0.280998
 sprite_frames = SubResource("SpriteFrames_6w55v")
 autoplay = "default"
-frame_progress = 0.810165
+
+[node name="BlackScreen" type="AnimatedSprite2D" parent="World/Elevator/Wall5/touchscreen"]
+material = SubResource("CanvasItemMaterial_l0ib7")
+position = Vector2(519, 367)
+scale = Vector2(2.33974, 3.47138)
+skew = -0.280998
+sprite_frames = SubResource("SpriteFrames_we380")
+autoplay = "default"
 
 [node name="Buttons" type="Node3D" parent="World/Elevator/Wall5"]
 transform = Transform3D(-4.47831e-08, 3.4181e-16, 0.979, -3.41811e-17, 0.098, -3.41462e-15, -0.07, -4.78537e-17, -6.26323e-07, 5.78, -0.229, -0.717)
@@ -553,7 +576,9 @@ mesh = SubResource("BoxMesh_hmvy2")
 surface_material_override/0 = SubResource("StandardMaterial3D_pwswf")
 
 [node name="RealDino" type="RigidBody3D" parent="World/Elevator"]
-transform = Transform3D(-0.891006, 1.52425e-16, -0.453991, 3.48787e-16, 1, -3.48787e-16, 0.453991, -4.69117e-16, -0.891006, 0.476, 0.305005, -0.933)
+transform = Transform3D(-0.891006, 1.52425e-16, -0.453991, 3.48787e-16, 1, -3.48787e-16, 0.453991, -4.69117e-16, -0.891006, 0.476, 2.98006, -0.933)
+visible = false
+gravity_scale = 1.66533e-16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/RealDino"]
 transform = Transform3D(0.5, -6.08261e-32, -3.84537e-09, -6.81545e-25, 0.5, 0, -1.95404e-09, 0, 0.5, -0.287094, 0.29342, 0.0190359)

@@ -339,6 +339,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
 shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall4"]
+transform = Transform3D(1, 0, 4.54747e-13, 0, 1, -5.12536e-24, 8.88178e-16, -6.61331e-25, 1, -13.2352, 0, 0.674094)
 mesh = SubResource("BoxMesh_hmvy2")
 
 [node name="Wall5" type="StaticBody3D" parent="World/Node3D/Elevator"]
@@ -524,7 +525,6 @@ sky_mode = 1
 
 [node name="DirectionalLight3D6" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(0.194543, 0.0287572, -0.980472, -2.25094e-11, 0.99957, 0.0293173, 0.980894, -0.00570348, 0.194459, -0.142693, 2.28487, -0.354739)
-visible = false
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 directional_shadow_mode = 0
 sky_mode = 1
@@ -532,12 +532,17 @@ sky_mode = 1
 [node name="AnimatedElevator" parent="World/Node3D" instance=ExtResource("11_3rntp")]
 transform = Transform3D(-8.74228e-10, 6.97574e-18, 0.02, 6.97574e-18, 0.02, -6.97574e-18, -0.02, 6.97574e-18, -8.74228e-10, 2.08165e-12, 0.32, -3.693)
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="World/Node3D/AnimatedElevator"]
-transform = Transform3D(50, -2.8058e-21, 2.34479e-12, 3.38813e-21, 50, 9.31767e-22, -2.27374e-12, 7.2001e-22, 50, -33.7885, 53.9778, -1.47694e-06)
+[node name="RedLight" type="OmniLight3D" parent="World/Node3D/AnimatedElevator"]
+transform = Transform3D(50, -1.45584e-20, 1.42109e-14, 1.69407e-20, 50, -1.09267e-20, 0, 1.28432e-20, 50, -24.0987, 155.367, -1.05338e-06)
 visible = false
-light_energy = 1.49
-light_indirect_energy = 14.487
-light_volumetric_fog_energy = 1.96
+light_color = Color(0.737255, 0.121569, 0.141176, 1)
+light_energy = 1.586
+light_indirect_energy = 1.18
+
+[node name="WhiteLight" type="OmniLight3D" parent="World/Node3D/AnimatedElevator"]
+transform = Transform3D(50, -1.05879e-20, 1.42109e-14, 1.35525e-20, 50, -9.23263e-21, 0, 1.01962e-20, 50, -24.0987, 158.115, -1.05338e-06)
+light_energy = 1.586
+light_indirect_energy = 1.18
 
 [node name="UI" type="Node2D" parent="."]
 
