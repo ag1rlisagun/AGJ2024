@@ -26,8 +26,9 @@ directories/dch_directory={
 directories/dtl_directory={
 "timeline": "res://DialogicTimelines/timeline.dtl"
 }
-layout/style_list=["res://DialogicStyle/default_style.tres"]
-layout/default_style="res://DialogicStyle/default_style.tres"
+layout/style_list=[]
+layout/default_style="Default"
+variables={}
 
 [display]
 
