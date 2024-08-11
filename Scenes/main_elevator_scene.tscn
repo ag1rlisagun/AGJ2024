@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=63 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -29,6 +29,9 @@ sky = SubResource("Sky_003nq")
 
 [sub_resource type="BoxMesh" id="BoxMesh_hmvy2"]
 lightmap_size_hint = Vector2i(14, 21)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uu2k8"]
+albedo_color = Color(0.29219, 0.29219, 0.29219, 1)
 
 [sub_resource type="Skin" id="Skin_qhkxu"]
 
@@ -249,7 +252,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
 shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Floor"]
+transform = Transform3D(0.999989, 0.00474728, 0, -0.00474728, 0.999989, 0, 0, 0, 1, -0.00135636, 4.50611e-05, 0)
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_uu2k8")
 
 [node name="Ceiling" type="StaticBody3D" parent="World/Elevator"]
 transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 2.08165e-12, 4, 2.08165e-12)
@@ -259,7 +264,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
 shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Ceiling"]
+transform = Transform3D(0.999989, 0.00474728, 0, -0.00474728, 0.999989, 0, 0, 0, 1, 0.00135636, -4.48227e-05, 0)
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_uu2k8")
 
 [node name="Wall1" type="StaticBody3D" parent="World/Elevator"]
 transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, -3, 2, 2.08165e-12)
