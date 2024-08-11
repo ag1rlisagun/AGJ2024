@@ -35,10 +35,14 @@ var current_state
 # lights off and touchpad lights up
 # new minigame (something we make in 2d)
 
+@onready var white_light = $AnimatedElevator/WhiteLight
+@onready var red_light = $AnimatedElevator/RedLight
+
 @onready var timer = $Timer
 @onready var camera_3d = $World/SubViewportContainer/SubViewport/Camera3D
 
 var escaping = false
+var pressed = false
 
 # BUTTONS
 @onready var button_num_1 = $UI/NumberButtons/ButtonNumber1
@@ -76,6 +80,20 @@ func _process(delta):
 		else:
 			handle_escape()
 			
+	if Input.is_action_just_pressed("Enter"):
+		if pressed:
+			pressed = false
+			$World/Elevator/RealDino.visible = true
+			$World/Elevator/ClickableDino.visible = false
+			$UI/EnterPrompt.visible = false
+			return
+		if !pressed:
+			$World/Elevator/RealDino.visible = false
+			$World/Elevator/ClickableDino.visible = true
+			$UI/EnterPrompt.visible = true
+			pressed = true
+			start_dialog("code_revealed")
+			return
 
 func handle_escape():
 	escaping = true
@@ -84,7 +102,8 @@ func handle_escape():
 func start_dialog(timeline):
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 	Dialogic.start(timeline)
-	$World/Elevator/Wall5/touchscreen/BlackScreen.visible = false
+	if !pressed:
+		$World/Elevator/Wall5/touchscreen/BlackScreen.visible = false
 
 func _on_timeline_ended():
 	Dialogic.timeline_ended.disconnect(_on_timeline_ended)
@@ -101,11 +120,38 @@ func _on_timeline_ended():
 		start_dialog("after_plushie_drop")
 		return
 	if current_state == 2:
+		current_state = 3
+		
+		## TURN LIGHTS BACK ON
+		red_light.visible = true
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = false
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = true
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = false
+		
+		white_light.visible = true
+	
+		# await get_tree().create_timer(2).timeout
+		start_dialog("plushie_instructions")
+		return
+	if current_state == 3:
+		# IMPLEMENT CLICKING ON THE DINO, 360 VIEW
+		# AND MAKE A TIMELINE SAYING THAT THERE's A CODE ON THE TAG
 		pass
-	return
-	# do something else here
+	if current_state == 4:
+		we_bossin_in_this_nova.play()
+		await get_tree().create_timer(2).timeout
+		$AnimatedElevator.open()
+		await get_tree().create_timer(2).timeout
+		TransitionScene.transition()
+		await TransitionScene.on_transition_finished
+		get_tree().change_scene_to_file("res://Scenes/start_elevator_scene.tscn")
+	
 
-const password = "1234"
+
+const password = "2047"
 @onready var label = $UI/NumberButtons/Label
 
 func key_press(digit):
@@ -116,74 +162,88 @@ func key_press(digit):
 func _on_button_number_1_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(1)
 
 func _on_button_number_2_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(2)
 
 func _on_button_number_3_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(3)
 
 func _on_button_number_4_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(4)
 
 func _on_button_number_5_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(5)
 
 func _on_button_number_6_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(6)
 
 func _on_button_number_7_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(7)
 
 func _on_button_number_8_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(8)
 
 func _on_button_number_9_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(9)
 
 func _on_button_number_0_pressed():
 	SFX_key_press.play()
 	choose_floor()
-	if current_state == 5:
+	if current_state == 3:
 		key_press(0)
 
 func _on_help_pressed():
 	SFX_key_press.play()
-	if label.text == password:
-		print("right")
-	else:
-		print("wrong")
-		label.text = ""
+	if current_state == 3:
+		if label.text == password:
+			print("right")
+			current_state = 4
+			$SFXPlayers/Success.play()
+			await get_tree().create_timer(2).timeout
+			start_dialog("after_code_inputted")
+			$World/Elevator/Wall5/touchscreen/AnimatedSprite2D.visible = false
+			$World/Elevator/Wall5/touchscreen/SadDino.visible = true
+		else:
+			print("wrong")
+			label.text = ""
 
 func _on_dino_pressed():
 	# Dialogic.start_timeline("dino_intro")
+	## IMPLEMENT DINO HOLDING HERE
+	#if !pressed:
+		#$World/Elevator/RealDino.visible = false
+		#$World/Elevator/ClickableDino.visible = true
+		#$UI/EnterPrompt.visible = true
+		#pressed = true
 	pass
+
 
 func _on_timer_timeout():
 	escaping = false
@@ -191,16 +251,33 @@ func _on_timer_timeout():
 func choose_floor():
 	if current_state == 0:
 		current_state = 1
+		await get_tree().create_timer(1.5).timeout
 		we_bossin_in_this_nova.play()
 		await get_tree().create_timer(randf_range(3, 10)).timeout
 		SFX_elevator_crash.play()
 		await get_tree().create_timer(2).timeout
 		we_bossin_in_this_nova.stop()
-		## TURN LIGHTS OFF
+		
 		$World/Elevator/Wall5/touchscreen/BlackScreen.visible = false
+		$World/Elevator/Wall5/touchscreen/SadDino.visible = false
 		$World/Elevator/Wall5/touchscreen/AnimatedSprite2D.visible = false
 		camera_3d.apply_shake()
-		await get_tree().create_timer(3).timeout
+		
+		## TURN LIGHTS OFF
+		white_light.visible = false
+		red_light.visible = true
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = false
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = true
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = false
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = true
+		await get_tree().create_timer(0.6).timeout
+		red_light.visible = false
+		
+		# await get_tree().create_timer(3).timeout
 		$World/Elevator/Wall5/touchscreen/BlackScreen.visible = true
 		$World/Elevator/Wall5/touchscreen/AnimatedSprite2D.visible = true
 		elevator_ding.play()

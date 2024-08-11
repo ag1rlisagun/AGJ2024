@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=81 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ct1cn2meqhpns" path="res://UIElements/PresetButtonShapes/circle_button.tscn" id="2_qrgbc"]
 [ext_resource type="AudioStream" uid="uid://bb7wwij68uqrp" path="res://Assets/Audio/SFX/Elevator Key Press.wav" id="3_1kshf"]
 [ext_resource type="AudioStream" uid="uid://ihisphhyai5b" path="res://Assets/Audio/SFX/Plushie Drop.wav" id="3_etp4u"]
+[ext_resource type="AudioStream" uid="uid://dyv55ildkqbtj" path="res://Assets/Audio/SFX/Success Chime.wav" id="3_vcgoj"]
 [ext_resource type="AudioStream" uid="uid://cm8ly3o4pxur0" path="res://Assets/Audio/SFX/Touchpad Press.wav" id="4_8iwbc"]
 [ext_resource type="AudioStream" uid="uid://bbkwx3q5f416v" path="res://Assets/Audio/SFX/FAIL LAUGH.wav" id="6_upd3n"]
 [ext_resource type="AudioStream" uid="uid://cgb5tbwuaji7a" path="res://Assets/Audio/SFX/Elevator Crash.wav" id="7_2i0ce"]
@@ -16,9 +17,18 @@
 [ext_resource type="AudioStream" path="res://Assets/Audio/Music/Death Music.wav" id="9_qha1s"]
 [ext_resource type="Texture2D" uid="uid://csk57wl3pid7w" path="res://DialogicCharacters/DinoChatter-4.png" id="10_3asup"]
 [ext_resource type="Texture2D" uid="uid://db2360hruoxxd" path="res://DialogicCharacters/DinoChatter-5.png" id="11_4mimj"]
+[ext_resource type="Texture2D" uid="uid://d07cdh81yxy1j" path="res://DialogicCharacters/DinoSad1.png" id="12_d1ih0"]
+[ext_resource type="Texture2D" uid="uid://dgaalhqhh4k0v" path="res://DialogicCharacters/DinoSad2.png" id="13_jw1ib"]
+[ext_resource type="Texture2D" uid="uid://cmmbvf1m0kmd7" path="res://DialogicCharacters/DinoSad3.png" id="14_wmlar"]
 [ext_resource type="PackedScene" uid="uid://ddqrb42u0155w" path="res://Assets/3DAssets/Character/bertasaurus.fbx" id="15_2m1lw"]
+[ext_resource type="Texture2D" uid="uid://buoh5d6w27t35" path="res://DialogicCharacters/DinoSad4.png" id="15_irf2e"]
+[ext_resource type="Texture2D" uid="uid://dlqv5y1tvndu8" path="res://DialogicCharacters/DinoSad5.png" id="16_1th7o"]
 [ext_resource type="Texture2D" uid="uid://ccp2qvfmr7eks" path="res://Assets/2DAssets/black_screen.jpg" id="16_8b2qi"]
 [ext_resource type="PackedScene" uid="uid://b5qvqqffwjmr4" path="res://Assets/PremadeObjects/animated_elevator.tscn" id="16_pweqw"]
+[ext_resource type="Texture2D" uid="uid://5v20hfvti3v1" path="res://DialogicCharacters/DinoSad6.png" id="17_j2mj3"]
+[ext_resource type="Script" path="res://Scripts/RotatingObject.gd" id="18_aoark"]
+[ext_resource type="Texture2D" uid="uid://bompxesgl1r7d" path="res://DialogicCharacters/sad7.png" id="18_pd6a4"]
+[ext_resource type="FontFile" uid="uid://60ocfi35qca0" path="res://Assets/Fonts/ribka-pixel-font/RibkaPixelDemoRegular-3lR1X.otf" id="21_e364m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
 
@@ -41,6 +51,35 @@ albedo_color = Color(0.29219, 0.29219, 0.29219, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x78ay"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b6t5e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_d1ih0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jw1ib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_wmlar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_irf2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1th7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_j2mj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_pd6a4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6w55v"]
 animations = [{
@@ -226,6 +265,9 @@ script = ExtResource("1_qlp68")
 [node name="ElevatorDing" type="AudioStreamPlayer" parent="SFXPlayers"]
 stream = ExtResource("2_ly776")
 
+[node name="Success" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("3_vcgoj")
+
 [node name="PlushieDrop" type="AudioStreamPlayer" parent="SFXPlayers"]
 stream = ExtResource("3_etp4u")
 
@@ -354,6 +396,15 @@ transform = Transform3D(0.999999, 2.79521e-20, 0, -3.55688e-23, 0.650993, 4.2814
 mesh = SubResource("BoxMesh_hmvy2")
 skin = SubResource("Skin_qhkxu")
 surface_material_override/0 = SubResource("StandardMaterial3D_x78ay")
+
+[node name="SadDino" type="AnimatedSprite2D" parent="World/Elevator/Wall5/touchscreen"]
+position = Vector2(519, 367)
+scale = Vector2(2.33974, 3.47138)
+skew = -0.280998
+sprite_frames = SubResource("SpriteFrames_b6t5e")
+autoplay = "default"
+frame = 5
+frame_progress = 0.209965
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/Elevator/Wall5/touchscreen"]
 position = Vector2(519, 367)
@@ -576,7 +627,7 @@ mesh = SubResource("BoxMesh_hmvy2")
 surface_material_override/0 = SubResource("StandardMaterial3D_pwswf")
 
 [node name="RealDino" type="RigidBody3D" parent="World/Elevator"]
-transform = Transform3D(-0.891006, 1.52425e-16, -0.453991, 3.48787e-16, 1, -3.48787e-16, 0.453991, -4.69117e-16, -0.891006, 0.476, 2.98006, -0.933)
+transform = Transform3D(-0.891006, 1.52425e-16, -0.453991, 3.48787e-16, 1, -3.48787e-16, 0.453991, -4.69117e-16, -0.891006, 0.496996, 2.98006, -0.933)
 visible = false
 gravity_scale = 1.66533e-16
 
@@ -585,6 +636,20 @@ transform = Transform3D(0.5, -6.08261e-32, -3.84537e-09, -6.81545e-25, 0.5, 0, -
 shape = SubResource("BoxShape3D_ei3ru")
 
 [node name="Dino2" parent="World/Elevator/RealDino" instance=ExtResource("15_2m1lw")]
+transform = Transform3D(0.1, -2.38679e-24, 2.09998e-08, 2.38679e-24, 0.1, 5.80864e-25, -2.09998e-08, -5.80864e-25, 0.1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="ClickableDino" type="RigidBody3D" parent="World/Elevator"]
+transform = Transform3D(-0.891006, 1.52425e-16, -0.453991, 3.48787e-16, 1, -3.48787e-16, 0.453991, -4.69117e-16, -0.891006, -0.227084, 1.5926, -0.997481)
+visible = false
+gravity_scale = 1.66533e-16
+script = ExtResource("18_aoark")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Elevator/ClickableDino"]
+transform = Transform3D(0.5, 4.81748e-24, 5.64463e-09, 1.07711e-23, 0.5, -1.6986e-23, 3.36797e-09, -1.2472e-23, 0.5, -0.287094, 0.29342, 0.0190359)
+shape = SubResource("BoxShape3D_ei3ru")
+disabled = true
+
+[node name="Dino2" parent="World/Elevator/ClickableDino" instance=ExtResource("15_2m1lw")]
 transform = Transform3D(0.1, -2.38679e-24, 2.09998e-08, 2.38679e-24, 0.1, 5.80864e-25, -2.09998e-08, -5.80864e-25, 0.1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 
 [node name="Dino" type="StaticBody3D" parent="World/Elevator"]
@@ -639,6 +704,16 @@ sky_mode = 1
 
 [node name="AnimatedElevator" parent="." instance=ExtResource("16_pweqw")]
 transform = Transform3D(-8.74228e-10, 6.97574e-18, 0.02, 6.97574e-18, 0.02, -6.97574e-18, -0.02, 6.97574e-18, -8.74228e-10, 0.00797272, 0.32, -1.30892)
+
+[node name="WhiteLight" type="OmniLight3D" parent="AnimatedElevator"]
+transform = Transform3D(17.4204, 46.8671, -1.4241e-06, -46.8671, 17.4204, -2.04863e-06, -1.4241e-06, 2.04863e-06, 50, -26.8761, 165.221, -1.16229e-06)
+light_energy = 1.168
+
+[node name="RedLight" type="OmniLight3D" parent="AnimatedElevator"]
+transform = Transform3D(17.4204, 46.8671, -1.4241e-06, -46.8671, 17.4204, -2.04863e-06, -1.4241e-06, 2.04863e-06, 50, -26.8761, 165.221, -1.16229e-06)
+visible = false
+light_color = Color(0.513726, 0.0941176, 0.129412, 1)
+light_energy = 16.0
 
 [node name="UI" type="Node2D" parent="."]
 
@@ -752,6 +827,26 @@ offset_top = 824.0
 offset_right = 1914.0
 offset_bottom = 1684.0
 scale = Vector2(0.35, 0.3)
+
+[node name="EnterPrompt" type="Label" parent="UI"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 480.0
+offset_top = 58.0
+offset_right = 1425.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("21_e364m")
+theme_override_font_sizes/font_size = 100
+text = "Enter to Put Back"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

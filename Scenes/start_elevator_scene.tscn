@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://crmaxyvkjhcom"]
+[gd_scene load_steps=38 format=3 uid="uid://crmaxyvkjhcom"]
 
 [ext_resource type="Script" path="res://Scripts/start_elevator_scene.gd" id="1_1i822"]
 [ext_resource type="AudioStream" uid="uid://owwx6ntbrdjx" path="res://Assets/Audio/SFX/Elevator Ding.wav" id="2_hh1bj"]
@@ -46,6 +46,11 @@ sky = SubResource("Sky_003nq")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hleeg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hmvy2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1hka"]
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
+metallic = 0.33
+roughness = 0.73
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ubnia"]
 
@@ -162,6 +167,7 @@ shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Floor2"]
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_o1hka")
 
 [node name="Ceiling2" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
 transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 2.08165e-12, 4, 2.08165e-12)
@@ -229,18 +235,6 @@ transform = Transform3D(0.999288, 0, 2.84217e-13, -4.20539e-23, 0.999288, -1.665
 transform = Transform3D(-1.55918e-09, -0.0784701, -9.37619e-14, 0.0356698, -3.43003e-09, -9.89891e-23, 3.67241e-23, -9.79062e-16, 0.0254264, 6.05028, -0.0329033, -0.0192505)
 mesh = SubResource("CylinderMesh_ubnia")
 surface_material_override/0 = SubResource("StandardMaterial3D_unbv8")
-
-[node name="Wall14" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
-transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 0.00353432, 5.5, 3.25214)
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Wall14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
-shape = SubResource("BoxShape3D_hleeg")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Wall14"]
-transform = Transform3D(1, 0, 7.29717e-09, 0, 1, 0, -3.33382e-11, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_hmvy2")
 
 [node name="DirectionalLight3D7" type="DirectionalLight3D" parent="World/Node3D/OutsideElevator"]
 transform = Transform3D(1, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 7.00102)
@@ -534,7 +528,6 @@ transform = Transform3D(-8.74228e-10, 6.97574e-18, 0.02, 6.97574e-18, 0.02, -6.9
 
 [node name="RedLight" type="OmniLight3D" parent="World/Node3D/AnimatedElevator"]
 transform = Transform3D(50, -1.45584e-20, 1.42109e-14, 1.69407e-20, 50, -1.09267e-20, 0, 1.28432e-20, 50, -24.0987, 155.367, -1.05338e-06)
-visible = false
 light_color = Color(0.737255, 0.121569, 0.141176, 1)
 light_energy = 1.586
 light_indirect_energy = 1.18
