@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://crmaxyvkjhcom"]
+[gd_scene load_steps=36 format=3 uid="uid://crmaxyvkjhcom"]
 
 [ext_resource type="Script" path="res://Scripts/start_elevator_scene.gd" id="1_1i822"]
 [ext_resource type="AudioStream" uid="uid://owwx6ntbrdjx" path="res://Assets/Audio/SFX/Elevator Ding.wav" id="2_hh1bj"]
@@ -51,6 +51,9 @@ sky = SubResource("Sky_003nq")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unbv8"]
 albedo_color = Color(0.831373, 0, 0.188235, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1hce"]
+albedo_color = Color(0.294118, 0.294118, 0.294118, 1)
+
 [sub_resource type="Skin" id="Skin_qhkxu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x78ay"]
@@ -90,6 +93,11 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
 albedo_color = Color(0, 0.576471, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bx2f4"]
+albedo_color = Color(0.192157, 0.192157, 0.192157, 1)
+metallic = 0.5
+roughness = 0.4
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_1i822")
@@ -280,6 +288,7 @@ shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Floor"]
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_t1hce")
 
 [node name="Ceiling" type="StaticBody3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 2.08165e-12, 4, 2.08165e-12)
@@ -290,6 +299,7 @@ shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Ceiling"]
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_t1hce")
 
 [node name="Wall1" type="StaticBody3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, -3, 2, 2.08165e-12)
@@ -458,6 +468,7 @@ shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/ElevatorDoor1"]
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_bx2f4")
 
 [node name="ElevatorDoor2" type="StaticBody3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -3.5, 2.5, -3.5)
@@ -468,6 +479,7 @@ shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/ElevatorDoor2"]
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_bx2f4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(1, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 0)
