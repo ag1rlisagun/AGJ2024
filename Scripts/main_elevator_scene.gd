@@ -49,39 +49,61 @@ func handle_escape():
 	escaping = true
 	timer.start()
 
+const password = "1234"
+@onready var label = $UI/NumberButtons/Label
+
+func key_press(digit):
+	if len(label.text) < 4:
+		label.text += str(digit)
+
 # ELEVATOR BUTTONS
 func _on_button_number_1_pressed():
 	SFX_key_press.play()
+	key_press(1)
 
 func _on_button_number_2_pressed():
 	SFX_key_press.play()
+	key_press(2)
 
 func _on_button_number_3_pressed():
 	SFX_key_press.play()
+	key_press(3)
 
 func _on_button_number_4_pressed():
 	SFX_key_press.play()
+	key_press(4)
 
 func _on_button_number_5_pressed():
 	SFX_key_press.play()
+	key_press(5)
 
 func _on_button_number_6_pressed():
 	SFX_key_press.play()
+	key_press(6)
 
 func _on_button_number_7_pressed():
 	SFX_key_press.play()
+	key_press(7)
 
 func _on_button_number_8_pressed():
 	SFX_key_press.play()
+	key_press(8)
 
 func _on_button_number_9_pressed():
 	SFX_key_press.play()
+	key_press(9)
 
 func _on_button_number_0_pressed():
 	SFX_key_press.play()
+	key_press(0)
 
 func _on_help_pressed():
-	pass # Replace with function body.
+	SFX_key_press.play()
+	if label.text == password:
+		print("right")
+	else:
+		print("wrong")
+		label.text = ""
 
 func _on_dino_pressed():
 	Dialogic.start_timeline("dino_intro")
