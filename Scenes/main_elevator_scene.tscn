@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=58 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -7,6 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://bb7wwij68uqrp" path="res://Assets/Audio/SFX/Elevator Key Press.wav" id="3_1kshf"]
 [ext_resource type="AudioStream" uid="uid://ihisphhyai5b" path="res://Assets/Audio/SFX/Plushie Drop.wav" id="3_etp4u"]
 [ext_resource type="AudioStream" uid="uid://cm8ly3o4pxur0" path="res://Assets/Audio/SFX/Touchpad Press.wav" id="4_8iwbc"]
+[ext_resource type="Texture2D" uid="uid://dgbf6g13ygb26" path="res://DialogicCharacters/DinoChatter-1.png" id="7_67mme"]
+[ext_resource type="Texture2D" uid="uid://3dufuqqdyk2b" path="res://DialogicCharacters/DinoChatter-2.png" id="8_hrwyu"]
+[ext_resource type="Texture2D" uid="uid://dekw5qjpwuhge" path="res://DialogicCharacters/DinoChatter-3.png" id="9_1mk6j"]
+[ext_resource type="Texture2D" uid="uid://csk57wl3pid7w" path="res://DialogicCharacters/DinoChatter-4.png" id="10_3asup"]
+[ext_resource type="Texture2D" uid="uid://db2360hruoxxd" path="res://DialogicCharacters/DinoChatter-5.png" id="11_4mimj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
 
@@ -20,11 +25,44 @@ sky = SubResource("Sky_003nq")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hleeg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hmvy2"]
+lightmap_size_hint = Vector2i(14, 21)
 
 [sub_resource type="Skin" id="Skin_qhkxu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x78ay"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6w55v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_67mme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hrwyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1mk6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3asup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4mimj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3asup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1mk6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hrwyu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jdqc7"]
 
@@ -125,6 +163,11 @@ font_size = 60
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
 albedo_color = Color(0, 0.576471, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_7lxjw"]
+text = "HELP
+"
+font_size = 40
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s3e2u"]
 
@@ -258,10 +301,18 @@ transform = Transform3D(1, 1.69407e-21, 0, 4.1359e-25, 1, -4.15922e-23, -5.55112
 shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5/touchscreen"]
-transform = Transform3D(1, 1.01644e-20, -1.36424e-12, -2.56426e-23, 1, -3.85699e-22, -1.88738e-15, 2.04841e-23, 0.999999, -0.0426941, 2.38419e-07, -0.00602794)
+transform = Transform3D(0.999999, 2.79521e-20, 0, -3.55688e-23, 0.650993, 4.2814e-23, -1.77636e-15, -5.74182e-23, 0.945794, -0.0427551, -0.036746, -0.00602794)
 mesh = SubResource("BoxMesh_hmvy2")
 skin = SubResource("Skin_qhkxu")
 surface_material_override/0 = SubResource("StandardMaterial3D_x78ay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/Elevator/Wall5/touchscreen"]
+position = Vector2(412, 424)
+scale = Vector2(2.9, 2.9)
+skew = -0.155334
+sprite_frames = SubResource("SpriteFrames_6w55v")
+autoplay = "default"
+frame_progress = 0.810165
 
 [node name="button1" type="StaticBody3D" parent="World/Elevator/Wall5"]
 transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
@@ -411,7 +462,7 @@ mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
 
-[node name="9button" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D4"]
+[node name="0button" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D4"]
 transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
 mesh = SubResource("TextMesh_vd2qo")
 surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
@@ -424,6 +475,11 @@ transform = Transform3D(1.12601, 0, 0, -3.80503e-23, 0.227423, -1.35585e-22, -4.
 mesh = SubResource("BoxMesh_hmvy2")
 skin = SubResource("Skin_qhkxu")
 surface_material_override/0 = SubResource("StandardMaterial3D_tv0a1")
+
+[node name="helpbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/helpbutton/MeshInstance3D"]
+transform = Transform3D(-0.197822, 0.0435737, 0.97927, -0.0138363, 0.998789, -0.0472371, -0.980141, -0.0228942, -0.19698, 0.697037, 0.055387, -0.0295687)
+mesh = SubResource("TextMesh_7lxjw")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
 
 [node name="Wall6" type="StaticBody3D" parent="World/Elevator"]
 transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 0.00353432, 5.5, -3.00042)
