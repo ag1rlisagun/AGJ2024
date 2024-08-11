@@ -1,7 +1,12 @@
 extends CanvasLayer
 
-var game_state
-# game state 
+var states = [0, 1, 2, 3]
+# 1:
+# Entered Elevator, waiting for button input
+# 2:
+# Any button pressed, elevator is going to the floor, 
+# playing music for random amount of time (7-17 sec)
+# Elevator breaks
 
 @onready var timer = $Timer
 var escaping = false
