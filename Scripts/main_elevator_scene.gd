@@ -19,11 +19,12 @@ var escaping = false
 
 # SFX
 @onready var SFX_key_press = $SFXPlayers/KeyPress
+@onready var SFX_fail_laugh = $SFXPlayers/FailLaugh
+@onready var SFX_elevator_crash = $SFXPlayers/ElevatorCrash
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -32,6 +33,10 @@ func _process(delta):
 			get_tree().quit()
 		else:
 			handle_escape()
+			
+	if Input.is_action_just_pressed("shake"):
+		SFX_elevator_crash.play()
+		SFX_fail_laugh.play()
 			
 func handle_escape():
 	escaping = true

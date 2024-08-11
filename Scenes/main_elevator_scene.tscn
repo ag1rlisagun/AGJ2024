@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=61 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -7,7 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://bb7wwij68uqrp" path="res://Assets/Audio/SFX/Elevator Key Press.wav" id="3_1kshf"]
 [ext_resource type="AudioStream" uid="uid://ihisphhyai5b" path="res://Assets/Audio/SFX/Plushie Drop.wav" id="3_etp4u"]
 [ext_resource type="AudioStream" uid="uid://cm8ly3o4pxur0" path="res://Assets/Audio/SFX/Touchpad Press.wav" id="4_8iwbc"]
+[ext_resource type="AudioStream" uid="uid://bbkwx3q5f416v" path="res://Assets/Audio/SFX/FAIL LAUGH.wav" id="6_upd3n"]
+[ext_resource type="AudioStream" uid="uid://cgb5tbwuaji7a" path="res://Assets/Audio/SFX/Elevator Crash.wav" id="7_2i0ce"]
 [ext_resource type="Texture2D" uid="uid://dgbf6g13ygb26" path="res://DialogicCharacters/DinoChatter-1.png" id="7_67mme"]
+[ext_resource type="AudioStream" uid="uid://36syyrepchgi" path="res://Assets/Audio/Music/We Bossin In This Nova.wav" id="8_b7452"]
 [ext_resource type="Texture2D" uid="uid://3dufuqqdyk2b" path="res://DialogicCharacters/DinoChatter-2.png" id="8_hrwyu"]
 [ext_resource type="Texture2D" uid="uid://dekw5qjpwuhge" path="res://DialogicCharacters/DinoChatter-3.png" id="9_1mk6j"]
 [ext_resource type="Texture2D" uid="uid://csk57wl3pid7w" path="res://DialogicCharacters/DinoChatter-4.png" id="10_3asup"]
@@ -202,7 +205,16 @@ stream = ExtResource("4_8iwbc")
 [node name="KeyPress" type="AudioStreamPlayer" parent="SFXPlayers"]
 stream = ExtResource("3_1kshf")
 
+[node name="FailLaugh" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("6_upd3n")
+
+[node name="ElevatorCrash" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("7_2i0ce")
+
 [node name="MusicPlayers" type="Node" parent="."]
+
+[node name="WeBossinInThisNova" type="AudioStreamPlayer" parent="MusicPlayers"]
+stream = ExtResource("8_b7452")
 
 [node name="World" type="Node3D" parent="."]
 

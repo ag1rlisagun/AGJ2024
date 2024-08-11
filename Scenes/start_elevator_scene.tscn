@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://crmaxyvkjhcom"]
+[gd_scene load_steps=32 format=3 uid="uid://crmaxyvkjhcom"]
 
 [ext_resource type="Script" path="res://Scripts/start_elevator_scene.gd" id="1_1i822"]
 [ext_resource type="AudioStream" uid="uid://owwx6ntbrdjx" path="res://Assets/Audio/SFX/Elevator Ding.wav" id="2_hh1bj"]
 [ext_resource type="AudioStream" uid="uid://ihisphhyai5b" path="res://Assets/Audio/SFX/Plushie Drop.wav" id="3_cggcb"]
+[ext_resource type="AudioStream" uid="uid://bbkwx3q5f416v" path="res://Assets/Audio/SFX/FAIL LAUGH.wav" id="3_rvke2"]
+[ext_resource type="AudioStream" uid="uid://cgb5tbwuaji7a" path="res://Assets/Audio/SFX/Elevator Crash.wav" id="4_tliff"]
 [ext_resource type="AudioStream" uid="uid://cm8ly3o4pxur0" path="res://Assets/Audio/SFX/Touchpad Press.wav" id="4_xpl46"]
 [ext_resource type="AudioStream" uid="uid://bb7wwij68uqrp" path="res://Assets/Audio/SFX/Elevator Key Press.wav" id="5_2dy1r"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="6_0c6l7"]
@@ -34,7 +36,34 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jdqc7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heey6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohnrt"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imu1j"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ficre"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2l473"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e528x"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ultle"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0nv4"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcccx"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2mer"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74hyg"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
@@ -47,6 +76,12 @@ script = ExtResource("1_1i822")
 
 [node name="ElevatorDing" type="AudioStreamPlayer" parent="SFXPlayers"]
 stream = ExtResource("2_hh1bj")
+
+[node name="FailLaugh" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("3_rvke2")
+
+[node name="ElevatorCrash" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("4_tliff")
 
 [node name="PlushieDrop" type="AudioStreamPlayer" parent="SFXPlayers"]
 stream = ExtResource("3_cggcb")
@@ -297,19 +332,19 @@ transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button1"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -9.41469e-14, 0.0356698, -3.43004e-09, -7.80394e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513592, -0.0329033, -0.398239)
 mesh = SubResource("CylinderMesh_jdqc7")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ohnrt")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button1"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.19016e-13, 0.0356698, -3.43004e-09, -9.70646e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513996, -0.034, -0.447275)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_imu1j")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button1"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515278, -0.0327724, -0.494947)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ficre")
 
 [node name="button2" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
 transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
@@ -317,19 +352,19 @@ transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button2"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.43004e-09, -8.21753e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.514, -0.08, -0.398)
 mesh = SubResource("CylinderMesh_jdqc7")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_2l473")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button2"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_e528x")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button2"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ultle")
 
 [node name="button3" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
 transform = Transform3D(0.999288, 0, 0, -5.62483e-23, 0.999288, -1.90429e-22, 8.88178e-16, 4.34399e-22, 0.999288, -0.0419855, -0.0292218, 0.0345802)
@@ -337,25 +372,25 @@ transform = Transform3D(0.999288, 0, 0, -5.62483e-23, 0.999288, -1.90429e-22, 8.
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.43004e-09, -8.21753e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.514, -0.08, -0.398)
 mesh = SubResource("CylinderMesh_jdqc7")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0nv4")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_mcccx")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_p2mer")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.36779e-13, 0.0356698, -3.43004e-09, -1.10299e-22, 3.72231e-23, -9.4369e-16, 0.0254264, 0.513414, -0.129968, -0.446644)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+surface_material_override/0 = SubResource("StandardMaterial3D_74hyg")
 
 [node name="helpbutton" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
 transform = Transform3D(0.0342269, -3.54695e-21, -1.06581e-13, 3.10193e-25, 0.170577, 2.27941e-22, 4.16334e-17, -1.45114e-24, 0.138104, 0.497522, -0.226693, -0.412918)
