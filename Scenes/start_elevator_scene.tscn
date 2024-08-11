@@ -1,0 +1,471 @@
+[gd_scene load_steps=21 format=3 uid="uid://crmaxyvkjhcom"]
+
+[ext_resource type="Script" path="res://Scripts/start_elevator_scene.gd" id="1_1i822"]
+[ext_resource type="AudioStream" uid="uid://owwx6ntbrdjx" path="res://Assets/Audio/SFX/Elevator Ding.wav" id="2_hh1bj"]
+[ext_resource type="AudioStream" uid="uid://ihisphhyai5b" path="res://Assets/Audio/SFX/Plushie Drop.wav" id="3_cggcb"]
+[ext_resource type="AudioStream" uid="uid://cm8ly3o4pxur0" path="res://Assets/Audio/SFX/Touchpad Press.wav" id="4_xpl46"]
+[ext_resource type="AudioStream" uid="uid://bb7wwij68uqrp" path="res://Assets/Audio/SFX/Elevator Key Press.wav" id="5_2dy1r"]
+[ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="6_0c6l7"]
+[ext_resource type="FontFile" uid="uid://60ocfi35qca0" path="res://Assets/Fonts/ribka-pixel-font/RibkaPixelDemoRegular-3lR1X.otf" id="7_doumi"]
+[ext_resource type="PackedScene" uid="uid://ct1cn2meqhpns" path="res://UIElements/PresetButtonShapes/circle_button.tscn" id="8_hdbbs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
+
+[sub_resource type="Sky" id="Sky_003nq"]
+sky_material = SubResource("ProceduralSkyMaterial_qqoen")
+
+[sub_resource type="Environment" id="Environment_cnwjf"]
+background_mode = 2
+sky = SubResource("Sky_003nq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hleeg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hmvy2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ubnia"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unbv8"]
+albedo_color = Color(0.831373, 0, 0.188235, 1)
+
+[sub_resource type="Skin" id="Skin_qhkxu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x78ay"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jdqc7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heey6"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
+albedo_color = Color(0, 0.576471, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_1i822")
+
+[node name="SFXPlayers" type="Node" parent="."]
+
+[node name="ElevatorDing" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("2_hh1bj")
+
+[node name="PlushieDrop" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("3_cggcb")
+
+[node name="TouchpadPress" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("4_xpl46")
+
+[node name="KeyPress" type="AudioStreamPlayer" parent="SFXPlayers"]
+stream = ExtResource("5_2dy1r")
+
+[node name="MusicPlayers" type="Node" parent="."]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_cnwjf")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="World"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="World/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="World/SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 3.43488e-16, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, 2.08165e-12, 2.5, -6.99067)
+script = ExtResource("6_0c6l7")
+
+[node name="Node3D" type="Node3D" parent="World"]
+
+[node name="OutsideElevator" type="Node3D" parent="World/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.00102)
+
+[node name="Floor2" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Floor2"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Ceiling2" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 2.08165e-12, 4, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Ceiling2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Ceiling2"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall9" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, -3, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Wall9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Wall9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall10" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, 3, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Wall10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Wall10"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall11" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(-4.37114e-08, -1.74393e-15, -5, 3.48787e-16, 5, -1.74394e-15, 1, -1.74393e-15, -2.18557e-07, 2.08165e-12, 2, 2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Wall11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="Wall12" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 5, 2, 3.25256)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Wall12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Wall12"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall13" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -4.99997, 1.99529, 3.25355)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Wall13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Wall13"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.4284e-23, 8.88178e-16, 1.08899e-23, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="button1" type="StaticBody3D" parent="World/Node3D/OutsideElevator/Wall13"]
+transform = Transform3D(0.999288, 0, 2.84217e-13, -4.20539e-23, 0.999288, -1.66546e-22, 1.63226e-15, 4.30402e-22, 0.999288, -6.59854, 0.0178157, -0.3961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Wall13/button1"]
+transform = Transform3D(-1.55918e-09, -0.0784701, -9.37619e-14, 0.0356698, -3.43003e-09, -9.89891e-23, 3.67241e-23, -9.79062e-16, 0.0254264, 6.05028, -0.0329033, -0.0192505)
+mesh = SubResource("CylinderMesh_ubnia")
+surface_material_override/0 = SubResource("StandardMaterial3D_unbv8")
+
+[node name="Wall14" type="StaticBody3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 0.00353432, 5.5, 3.25214)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/OutsideElevator/Wall14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/OutsideElevator/Wall14"]
+transform = Transform3D(1, 0, 7.29717e-09, 0, 1, 0, -3.33382e-11, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="DirectionalLight3D7" type="DirectionalLight3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(1, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 7.00102)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D8" type="DirectionalLight3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(-0.999993, -3.96402e-05, -0.00365317, 0.00365338, -0.0108502, -0.999934, 4.50789e-11, -0.999941, 0.0108503, 0, 1.1587, 7.00102)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D9" type="DirectionalLight3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(1, 0, 0, 0, 0.99957, 0.0293174, 0, -0.0293174, 0.99957, -0.196619, 2.28487, 8.08205)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+light_energy = 0.758
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D10" type="DirectionalLight3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(-0.994237, 0.00314285, -0.107155, 5.11307e-19, 0.99957, 0.0293173, 0.107201, 0.0291484, -0.99381, -0.196619, 2.28487, 6.64628)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D11" type="DirectionalLight3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(0.00881388, -0.0293162, 0.999531, -3.5962e-11, 0.99957, 0.0293173, -0.999961, -0.0002584, 0.00881009, 0.543927, 2.28487, 6.64628)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D12" type="DirectionalLight3D" parent="World/Node3D/OutsideElevator"]
+transform = Transform3D(0.194543, 0.0287572, -0.980472, -2.25094e-11, 0.99957, 0.0293173, 0.980894, -0.00570348, 0.194459, -0.142693, 2.28487, 6.64628)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="Elevator" type="Node3D" parent="World/Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Floor"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Ceiling" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(7, 0, 0, 0, 0.5, 0, 0, 0, 7, 2.08165e-12, 4, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Ceiling"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall1" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, -3, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall2" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 7, 3, 2, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall2"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall3" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-4.37114e-08, -1.74393e-15, -5, 3.48787e-16, 5, -1.74394e-15, 1, -1.74393e-15, -2.18557e-07, 2.08165e-12, 2, 2.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="Wall4" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 5, 2, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall4"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall5" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -4.99997, 1.99529, -2.99901)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.4284e-23, 8.88178e-16, 1.08899e-23, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="touchscreen" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
+transform = Transform3D(0.034283, -3.49401e-21, -5.68434e-14, 2.06795e-25, 0.170857, 2.14711e-22, 2.77556e-17, -4.75682e-24, 0.13833, 0.497523, 0.100324, -0.412918)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall5/touchscreen"]
+transform = Transform3D(1, 1.69407e-21, 0, 4.1359e-25, 1, -4.15922e-23, -5.55112e-17, -3.24555e-23, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/touchscreen"]
+transform = Transform3D(1, 1.01644e-20, -1.36424e-12, -2.56426e-23, 1, -3.85699e-22, -1.88738e-15, 2.04841e-23, 0.999999, -0.0426941, 2.38419e-07, -0.00602794)
+mesh = SubResource("BoxMesh_hmvy2")
+skin = SubResource("Skin_qhkxu")
+surface_material_override/0 = SubResource("StandardMaterial3D_x78ay")
+
+[node name="button1" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
+transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button1"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -9.41469e-14, 0.0356698, -3.43004e-09, -7.80394e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513592, -0.0329033, -0.398239)
+mesh = SubResource("CylinderMesh_jdqc7")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button1"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.19016e-13, 0.0356698, -3.43004e-09, -9.70646e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513996, -0.034, -0.447275)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button1"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515278, -0.0327724, -0.494947)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="button2" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
+transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button2"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.43004e-09, -8.21753e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.514, -0.08, -0.398)
+mesh = SubResource("CylinderMesh_jdqc7")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button2"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button2"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="button3" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
+transform = Transform3D(0.999288, 0, 0, -5.62483e-23, 0.999288, -1.90429e-22, 8.88178e-16, 4.34399e-22, 0.999288, -0.0419855, -0.0292218, 0.0345802)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.43004e-09, -8.21753e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.514, -0.08, -0.398)
+mesh = SubResource("CylinderMesh_jdqc7")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/button3"]
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.36779e-13, 0.0356698, -3.43004e-09, -1.10299e-22, 3.72231e-23, -9.4369e-16, 0.0254264, 0.513414, -0.129968, -0.446644)
+mesh = SubResource("CylinderMesh_jdqc7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="helpbutton" type="StaticBody3D" parent="World/Node3D/Elevator/Wall5"]
+transform = Transform3D(0.0342269, -3.54695e-21, -1.06581e-13, 3.10193e-25, 0.170577, 2.27941e-22, 4.16334e-17, -1.45114e-24, 0.138104, 0.497522, -0.226693, -0.412918)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall5/helpbutton"]
+transform = Transform3D(1.12601, 0, 0, -3.80503e-23, 0.227423, -1.35585e-22, -4.996e-16, -1.01759e-23, 0.195669, -0.0427246, 0.368685, 0.358739)
+mesh = SubResource("BoxMesh_hmvy2")
+skin = SubResource("Skin_qhkxu")
+surface_material_override/0 = SubResource("StandardMaterial3D_tv0a1")
+
+[node name="Wall6" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 0.00353432, 5.5, -3.00042)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall6"]
+transform = Transform3D(1, 0, 7.29717e-09, 0, 1, 0, -3.33382e-11, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="ElevatorDoor1" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, 3.5, 2.5, -3.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/ElevatorDoor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/ElevatorDoor1"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="ElevatorDoor2" type="StaticBody3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -3.5, 2.5, -3.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/ElevatorDoor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/ElevatorDoor2"]
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(1, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 0)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D5" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-0.999993, -3.96402e-05, -0.00365317, 0.00365338, -0.0108502, -0.999934, 4.50789e-11, -0.999941, 0.0108503, 0, 1.1587, 0)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(1, 0, 0, 0, 0.99957, 0.0293174, 0, -0.0293174, 0.99957, -0.196619, 2.28487, 1.08103)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+light_energy = 0.758
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(-0.994237, 0.00314285, -0.107155, 5.11307e-19, 0.99957, 0.0293173, 0.107201, 0.0291484, -0.99381, -0.196619, 2.28487, -0.354739)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(0.00881388, -0.0293162, 0.999531, -3.5962e-11, 0.99957, 0.0293173, -0.999961, -0.0002584, 0.00881009, 0.543927, 2.28487, -0.354739)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D6" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
+transform = Transform3D(0.194543, 0.0287572, -0.980472, -2.25094e-11, 0.99957, 0.0293173, 0.980894, -0.00570348, 0.194459, -0.142693, 2.28487, -0.354739)
+light_color = Color(0.839216, 0.85098, 0.686275, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="TitleWhite" type="Label" parent="UI"]
+offset_right = 1921.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_doumi")
+theme_override_font_sizes/font_size = 146
+text = "HELLEVATOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleRed" type="Label" parent="UI"]
+offset_left = 13.0
+offset_top = 4.0
+offset_right = 1934.0
+offset_bottom = 274.0
+theme_override_fonts/font = ExtResource("7_doumi")
+theme_override_font_sizes/font_size = 146
+text = "HELLEVATOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" parent="UI" instance=ExtResource("8_hdbbs")]
+offset_left = 1429.0
+offset_top = 533.0
+offset_right = 2287.0
+offset_bottom = 1393.0
+scale = Vector2(0.05, 0.05)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

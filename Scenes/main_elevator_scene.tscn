@@ -614,6 +614,9 @@ offset_right = 2252.0
 offset_bottom = 1633.0
 scale = Vector2(0.45, 0.35)
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber1" to="." method="_on_button_number_1_pressed"]
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber2" to="." method="_on_button_number_2_pressed"]
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber3" to="." method="_on_button_number_3_pressed"]
@@ -626,3 +629,4 @@ scale = Vector2(0.45, 0.35)
 [connection signal="pressed" from="UI/NumberButtons/ButtonNumber0" to="." method="_on_button_number_0_pressed"]
 [connection signal="pressed" from="UI/HelpButton/Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="UI/DinoButton/Dino" to="." method="_on_dino_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

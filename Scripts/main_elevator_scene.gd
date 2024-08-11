@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 
+@onready var timer = $Timer
+var escaping = false
+
 # BUTTONS
 @onready var button_num_1 = $UI/NumberButtons/ButtonNumber1
 @onready var button_num_2 = $UI/NumberButtons/ButtonNumber2
@@ -24,7 +27,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("Esc"):
+		if escaping:
+			get_tree().quit()
+		else:
+			handle_escape()
+			
+func handle_escape():
+	escaping = true
+	timer.start()
 
 # ELEVATOR BUTTONS
 func _on_button_number_1_pressed():
@@ -62,3 +73,6 @@ func _on_help_pressed():
 
 func _on_dino_pressed():
 	Dialogic.start_timeline("dino_intro")
+
+func _on_timer_timeout():
+	escaping = false
