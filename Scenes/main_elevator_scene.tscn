@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=62 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -171,6 +171,11 @@ albedo_color = Color(0, 0.576471, 0, 1)
 text = "HELP
 "
 font_size = 40
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwswf"]
+albedo_color = Color(0.192556, 0.192556, 0.192556, 1)
+metallic = 0.5
+roughness = 0.4
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s3e2u"]
 
@@ -512,7 +517,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
 shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall7"]
+transform = Transform3D(1, 0, 5.68434e-14, 0, 1, -5.12535e-24, 2.22045e-16, -6.61331e-25, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_pwswf")
 
 [node name="Wall8" type="StaticBody3D" parent="World/Elevator"]
 transform = Transform3D(-2.18557e-08, -1.74393e-15, -7, 1.74394e-16, 5, -2.44151e-15, 0.5, -1.74393e-15, -3.0598e-07, -3.5, 2.5, -3.5)
@@ -524,6 +531,7 @@ shape = SubResource("BoxShape3D_hleeg")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall8"]
 transform = Transform3D(1, 0, 5.68434e-14, 0, 1, -5.12535e-24, 2.22045e-16, -6.61331e-25, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_hmvy2")
+surface_material_override/0 = SubResource("StandardMaterial3D_pwswf")
 
 [node name="Dino" type="StaticBody3D" parent="World/Elevator"]
 transform = Transform3D(1, 0, 0, 0, 1, 5.33075e-10, 0, -7.61026e-10, 1, 0, 0.745098, 1.82648e-09)
