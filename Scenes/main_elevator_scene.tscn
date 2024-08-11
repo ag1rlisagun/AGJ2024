@@ -529,7 +529,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
 shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall8"]
-transform = Transform3D(1, 0, 1.13687e-13, 0, 1, -5.12535e-24, 4.44089e-16, -6.61331e-25, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 5.68434e-14, 0, 1, -5.12535e-24, 2.22045e-16, -6.61331e-25, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_hmvy2")
 surface_material_override/0 = SubResource("StandardMaterial3D_pwswf")
 

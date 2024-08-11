@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://crmaxyvkjhcom"]
+[gd_scene load_steps=34 format=3 uid="uid://crmaxyvkjhcom"]
 
 [ext_resource type="Script" path="res://Scripts/start_elevator_scene.gd" id="1_1i822"]
 [ext_resource type="AudioStream" uid="uid://owwx6ntbrdjx" path="res://Assets/Audio/SFX/Elevator Ding.wav" id="2_hh1bj"]
@@ -10,6 +10,28 @@
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="6_0c6l7"]
 [ext_resource type="FontFile" uid="uid://60ocfi35qca0" path="res://Assets/Fonts/ribka-pixel-font/RibkaPixelDemoRegular-3lR1X.otf" id="7_doumi"]
 [ext_resource type="PackedScene" uid="uid://ct1cn2meqhpns" path="res://UIElements/PresetButtonShapes/circle_button.tscn" id="8_hdbbs"]
+
+[sub_resource type="Animation" id="Animation_nt4sc"]
+resource_name = "1_elevator_door"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("World/Node3D/Elevator/ElevatorDoor1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 3.5, 2.5, -3.5, 1, 1, 5, 2.5, -3.5)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("World/Node3D/Elevator/ElevatorDoor2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -3.5, 2.5, -3.5, 1, 1, -5, 2.5, -3.5)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljyq5"]
+_data = {
+"1_elevator_door": SubResource("Animation_nt4sc")
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qqoen"]
 
@@ -71,6 +93,11 @@ albedo_color = Color(0, 0.576471, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_1i822")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ljyq5")
+}
 
 [node name="SFXPlayers" type="Node" parent="."]
 
@@ -410,6 +437,16 @@ shape = SubResource("BoxShape3D_hleeg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall6"]
 transform = Transform3D(1, 0, 7.29717e-09, 0, 1, 0, -3.33382e-11, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_hmvy2")
+
+[node name="Wall" type="StaticBody3D" parent="World/Node3D/Elevator/Wall6"]
+transform = Transform3D(1, 0, 3.41061e-13, 0, 1, -5.12536e-24, 8.88178e-16, -6.61331e-25, 1, 12, -0.6, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Node3D/Elevator/Wall6/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0205078, 0, 0)
+shape = SubResource("BoxShape3D_hleeg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Node3D/Elevator/Wall6/Wall"]
 mesh = SubResource("BoxMesh_hmvy2")
 
 [node name="ElevatorDoor1" type="StaticBody3D" parent="World/Node3D/Elevator"]
