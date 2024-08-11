@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var game_state
+# game state 
 
 @onready var timer = $Timer
 var escaping = false

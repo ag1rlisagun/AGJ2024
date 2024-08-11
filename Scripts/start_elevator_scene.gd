@@ -25,6 +25,8 @@ func _process(delta):
 func handle_escape():
 	escaping = true
 	timer.start()
+	
+	Dialogic._on_timeline_ended()
 
 func _on_start_button_pressed():
 	key_press.play()
@@ -32,7 +34,8 @@ func _on_start_button_pressed():
 		started = true
 		await get_tree().create_timer(randf_range(3, 10)).timeout
 		SFX_elevator_ding.play()
-		animation_player.play("1_elevator_door")
+		# animation_player.play("1_elevator_door")
+		$World/Node3D/AnimatedElevator.open()
 		await get_tree().create_timer(1.5).timeout
 		TransitionScene.transition()
 		await TransitionScene.on_transition_finished
