@@ -25,6 +25,7 @@ sky = SubResource("Sky_003nq")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hleeg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hmvy2"]
+lightmap_size_hint = Vector2i(14, 21)
 
 [sub_resource type="Skin" id="Skin_qhkxu"]
 
@@ -306,12 +307,12 @@ skin = SubResource("Skin_qhkxu")
 surface_material_override/0 = SubResource("StandardMaterial3D_x78ay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/Elevator/Wall5/touchscreen"]
-position = Vector2(415, 424)
+position = Vector2(412, 424)
 scale = Vector2(2.9, 2.9)
 skew = -0.155334
 sprite_frames = SubResource("SpriteFrames_6w55v")
 autoplay = "default"
-frame_progress = 0.408314
+frame_progress = 0.810165
 
 [node name="button1" type="StaticBody3D" parent="World/Elevator/Wall5"]
 transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)

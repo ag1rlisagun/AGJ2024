@@ -6,22 +6,22 @@
 "custom_info": {
 "sound_mood_default": "",
 "sound_moods": {},
-"style": "dino_style"
+"style": "default_style"
 },
-"default_portrait": "Screenshot 2024-08-10 at 6.09.56 PM",
-"description": "A helpful?? albertosaurus",
-"display_name": "helpful dino",
+"default_portrait": "Talking",
+"description": "",
+"display_name": "dino",
 "mirror": false,
 "nicknames": [""],
 "offset": Vector2(0, 0),
 "portraits": {
-"Screenshot 2024-08-10 at 6.09.56 PM": {
+"Talking": {
 "export_overrides": {
-"image": "\"res://Assets/CharacterSprite/Screenshot 2024-08-10 at 6.09.56 PM.png\""
+"image": "\"res://Assets/CharacterSprite/Screenshot 2024-08-10 at 5.25.18 PM.jpg\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),
-"scale": 1,
+"scale": 1.0,
 "scene": ""
 }
 },

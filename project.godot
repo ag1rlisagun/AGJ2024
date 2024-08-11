@@ -30,7 +30,6 @@ directories/dtl_directory={
 "plushie_instructions": "res://DialogicTimelines/plushie_instructions.dtl",
 "timeline": "res://DialogicTimelines/timeline.dtl"
 }
-
 layout/style_list=["res://DialogicStyle/dino_style.tres"]
 layout/default_style="res://DialogicStyle/dino_style.tres"
 variables={}
