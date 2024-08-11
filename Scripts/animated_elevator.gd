@@ -14,3 +14,9 @@ func _process(delta):
 
 func open():
 	animation_player.play("elevator_open")
+	
+func lights_off():
+	pass
+
+func lights_on():
+	pass

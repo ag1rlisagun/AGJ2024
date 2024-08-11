@@ -1,12 +1,35 @@
 extends CanvasLayer
 
-var states = [0, 1, 2, 3]
+var current_state
+# 0:
+# Entered Elevator
+## waiting for button input
 # 1:
-# Entered Elevator, waiting for button input
-# 2:
-# Any button pressed, elevator is going to the floor, 
+# Any button pressed (disable buttons after), elevator is going to the floor, 
 # playing music for random amount of time (7-17 sec)
-# Elevator breaks
+
+# 2:
+# Elevator breaks down (music stop, shake, lights down)
+# Ding plays, Dinosaur starts speaking
+# Dialog Dialog
+# Once Dialog finished, 
+# Dino drops down
+## IMPLEMENT: RIGHT CLICK ON DINO TO VIEW AS OBJECT THAT ROTATES
+# Dialog
+# Light turns on
+# Dialog
+# 2:
+# Puzzle state UNSOLVED
+## Waiting for number input again
+# if input correct
+# make a number of tries? if failed then death? 
+# and back to the beginning
+# 3: 
+# Dialog, music
+# Going to another floor
+# crashes again?
+# lights off and touchpad lights up
+# new minigame (something we make in 2d)
 
 @onready var timer = $Timer
 var escaping = false
@@ -29,9 +52,14 @@ var escaping = false
 @onready var SFX_fail_laugh = $SFXPlayers/FailLaugh
 @onready var SFX_elevator_crash = $SFXPlayers/ElevatorCrash
 
+# Music
+@onready var we_bossin_in_this_nova = $MusicPlayers/WeBossinInThisNova
+@onready var death_music = $MusicPlayers/DeathMusic
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	current_state = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -42,8 +70,9 @@ func _process(delta):
 			handle_escape()
 			
 	if Input.is_action_just_pressed("shake"):
+		await get_tree().create_timer(1).timeout
 		SFX_elevator_crash.play()
-		SFX_fail_laugh.play()
+		# SFX_fail_laugh.play()
 			
 func handle_escape():
 	escaping = true
@@ -59,43 +88,63 @@ func key_press(digit):
 # ELEVATOR BUTTONS
 func _on_button_number_1_pressed():
 	SFX_key_press.play()
-	key_press(1)
+	choose_floor()
+	if current_state == 2:
+		key_press(1)
 
 func _on_button_number_2_pressed():
 	SFX_key_press.play()
-	key_press(2)
+	choose_floor()
+	if current_state == 2:
+		key_press(2)
 
 func _on_button_number_3_pressed():
 	SFX_key_press.play()
-	key_press(3)
+	choose_floor()
+	if current_state == 2:
+		key_press(3)
 
 func _on_button_number_4_pressed():
 	SFX_key_press.play()
-	key_press(4)
+	choose_floor()
+	if current_state == 2:
+		key_press(4)
 
 func _on_button_number_5_pressed():
 	SFX_key_press.play()
-	key_press(5)
+	choose_floor()
+	if current_state == 2:
+		key_press(5)
 
 func _on_button_number_6_pressed():
 	SFX_key_press.play()
-	key_press(6)
+	choose_floor()
+	if current_state == 2:
+		key_press(6)
 
 func _on_button_number_7_pressed():
 	SFX_key_press.play()
-	key_press(7)
+	choose_floor()
+	if current_state == 2:
+		key_press(7)
 
 func _on_button_number_8_pressed():
 	SFX_key_press.play()
-	key_press(8)
+	choose_floor()
+	if current_state == 2:
+		key_press(8)
 
 func _on_button_number_9_pressed():
 	SFX_key_press.play()
-	key_press(9)
+	choose_floor()
+	if current_state == 2:
+		key_press(9)
 
 func _on_button_number_0_pressed():
 	SFX_key_press.play()
-	key_press(0)
+	choose_floor()
+	if current_state == 2:
+		key_press(0)
 
 func _on_help_pressed():
 	SFX_key_press.play()
@@ -110,3 +159,12 @@ func _on_dino_pressed():
 
 func _on_timer_timeout():
 	escaping = false
+	
+func choose_floor():
+	if current_state == 0:
+		current_state = 1
+		we_bossin_in_this_nova.play()
+		await get_tree().create_timer(randf_range(3, 10)).timeout
+		we_bossin_in_this_nova.stop()
+		Input.action_press("shake")
+		Input.action_release("shake")

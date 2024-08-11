@@ -488,18 +488,21 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bx2f4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(1, 0, 0, 0, 0.0108557, 0.999941, 0, -0.999941, 0.0108557, 0, 3.11956, 0)
+visible = false
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="DirectionalLight3D5" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(-0.999993, -3.96402e-05, -0.00365317, 0.00365338, -0.0108502, -0.999934, 4.50789e-11, -0.999941, 0.0108503, 0, 1.1587, 0)
+visible = false
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(1, 0, 0, 0, 0.99957, 0.0293174, 0, -0.0293174, 0.99957, -0.196619, 2.28487, 1.08103)
+visible = false
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 light_energy = 0.758
 directional_shadow_mode = 0
@@ -507,24 +510,34 @@ sky_mode = 1
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(-0.994237, 0.00314285, -0.107155, 5.11307e-19, 0.99957, 0.0293173, 0.107201, 0.0291484, -0.99381, -0.196619, 2.28487, -0.354739)
+visible = false
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="DirectionalLight3D4" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(0.00881388, -0.0293162, 0.999531, -3.5962e-11, 0.99957, 0.0293173, -0.999961, -0.0002584, 0.00881009, 0.543927, 2.28487, -0.354739)
+visible = false
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="DirectionalLight3D6" type="DirectionalLight3D" parent="World/Node3D/Elevator"]
 transform = Transform3D(0.194543, 0.0287572, -0.980472, -2.25094e-11, 0.99957, 0.0293173, 0.980894, -0.00570348, 0.194459, -0.142693, 2.28487, -0.354739)
+visible = false
 light_color = Color(0.839216, 0.85098, 0.686275, 1)
 directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="AnimatedElevator" parent="World/Node3D" instance=ExtResource("11_3rntp")]
 transform = Transform3D(-8.74228e-10, 6.97574e-18, 0.02, 6.97574e-18, 0.02, -6.97574e-18, -0.02, 6.97574e-18, -8.74228e-10, 2.08165e-12, 0.32, -3.693)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="World/Node3D/AnimatedElevator"]
+transform = Transform3D(50, -2.8058e-21, 2.34479e-12, 3.38813e-21, 50, 9.31767e-22, -2.27374e-12, 7.2001e-22, 50, -33.7885, 53.9778, -1.47694e-06)
+visible = false
+light_energy = 1.49
+light_indirect_energy = 14.487
+light_volumetric_fog_energy = 1.96
 
 [node name="UI" type="Node2D" parent="."]
 

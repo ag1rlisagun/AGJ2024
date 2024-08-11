@@ -69,7 +69,7 @@ transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 2.08165e-12, 0.32, -
 script = ExtResource("2_0jacg")
 
 [node name="back_rail_geo" parent="RootNode" index="2"]
-transform = Transform3D(92.2068, 0, 0, 0, -0.00116057, 795.699, 0, -4867.77, -0.000189709, -70.3812, 79.7194, -3.765)
+transform = Transform3D(92.2068, 0, 0, 0, -0.00116057, 795.699, 0, -4867.77, -0.000189709, -70.3812, 79.7194, 0.4655)
 
 [node name="back_rail_geo_001" parent="RootNode" index="3"]
 transform = Transform3D(5.49595e-06, -4867.77, -2.37137e-05, 2.74798e-06, 0, 795.699, -92.2068, -0.000145071, 4.74274e-05, -19.1117, 79.5046, 61.0755)
