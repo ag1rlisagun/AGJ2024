@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dm8baebyih4ty"]
+[gd_scene load_steps=51 format=3 uid="uid://dm8baebyih4ty"]
 
 [ext_resource type="Script" path="res://Scripts/main_elevator_scene.gd" id="1_qlp68"]
 [ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_uybvl"]
@@ -30,6 +30,98 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heey6"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjq36"]
+
+[sub_resource type="TextMesh" id="TextMesh_ahps7"]
+material = SubResource("StandardMaterial3D_rjq36")
+text = "1"
+font_size = 60
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_us4rb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d45q"]
+
+[sub_resource type="TextMesh" id="TextMesh_ak2u7"]
+material = SubResource("StandardMaterial3D_6d45q")
+text = "2
+"
+font_size = 60
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ubna"]
+
+[sub_resource type="TextMesh" id="TextMesh_mbb6f"]
+material = SubResource("StandardMaterial3D_7ubna")
+text = "ABC"
+font_size = 30
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3i2m"]
+
+[sub_resource type="TextMesh" id="TextMesh_j7nyl"]
+material = SubResource("StandardMaterial3D_g3i2m")
+text = "3"
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_v30ya"]
+text = "DEF"
+font_size = 30
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ekde"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6q3wy"]
+
+[sub_resource type="TextMesh" id="TextMesh_way5d"]
+material = SubResource("StandardMaterial3D_6q3wy")
+text = "4"
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_uma0b"]
+text = "GHI"
+font_size = 30
+
+[sub_resource type="TextMesh" id="TextMesh_r1ssi"]
+text = "5"
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_jw5b1"]
+text = "JKL"
+font_size = 30
+
+[sub_resource type="TextMesh" id="TextMesh_vttuj"]
+text = "MNO"
+font_size = 30
+
+[sub_resource type="TextMesh" id="TextMesh_uejwq"]
+text = "6"
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_swdua"]
+text = "7"
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_wufyk"]
+text = "PQRS"
+font_size = 30
+
+[sub_resource type="TextMesh" id="TextMesh_vlw0y"]
+text = "TUV"
+font_size = 30
+
+[sub_resource type="TextMesh" id="TextMesh_vjgj5"]
+text = "8"
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_8h2h6"]
+text = "9"
+font_size = 60
+
+[sub_resource type="TextMesh" id="TextMesh_mhe2j"]
+text = "WXYZ"
+font_size = 29
+
+[sub_resource type="TextMesh" id="TextMesh_vd2qo"]
+text = "0"
+font_size = 60
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0a1"]
 albedo_color = Color(0, 0.576471, 0, 1)
@@ -175,9 +267,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_x78ay")
 transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Elevator/Wall5/button1"]
-transform = Transform3D(-1.55918e-09, -0.0784702, -9.41469e-14, 0.0356698, -3.43004e-09, -7.80394e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513592, -0.0329033, -0.398239)
+transform = Transform3D(-1.55918e-09, -0.0784702, -9.41469e-14, 0.0356698, -3.43004e-09, -7.88666e-23, 4.09454e-23, -9.4369e-16, 0.0254264, 0.513592, -0.0329033, -0.398239)
 mesh = SubResource("CylinderMesh_jdqc7")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="1button" type="MeshInstance3D" parent="World/Elevator/Wall5/button1/MeshInstance3D"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_ahps7")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Elevator/Wall5/button1"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.19016e-13, 0.0356698, -3.43004e-09, -9.70646e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513996, -0.034, -0.447275)
@@ -185,11 +282,28 @@ mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
 
+[node name="2button" type="MeshInstance3D" parent="World/Elevator/Wall5/button1/MeshInstance3D2"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312677, -0.059703, -0.947982, -0.949705, 0.0016534, 0.313141, 0.157845, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_ak2u7")
+
+[node name="ABCbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button1/MeshInstance3D2"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.059703, -0.947983, -0.949705, 0.0016534, 0.313141, -0.229604, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_mbb6f")
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Elevator/Wall5/button1"]
-transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515278, -0.0327724, -0.494947)
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.45831e-23, 4.09454e-23, -1.02696e-15, 0.0254264, 0.515278, -0.0327724, -0.494947)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="3button" type="MeshInstance3D" parent="World/Elevator/Wall5/button1/MeshInstance3D3"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.059703, -0.947983, -0.949705, 0.0016534, 0.313141, 0.157845, -1.18638, -0.0143051)
+mesh = SubResource("TextMesh_j7nyl")
+
+[node name="DEFbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button1/MeshInstance3D3"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.0597031, -0.947983, -0.949705, 0.0016534, 0.313141, -0.229602, -1.18638, -0.0080986)
+mesh = SubResource("TextMesh_v30ya")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ekde")
 
 [node name="button2" type="StaticBody3D" parent="World/Elevator/Wall5"]
 transform = Transform3D(0.999288, 0, 0, -3.97047e-23, 0.999288, -1.90429e-22, 8.88178e-16, 3.0205e-22, 0.999288, -0.0412498, 0.0178157, 0.0342464)
@@ -199,17 +313,47 @@ transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.430
 mesh = SubResource("CylinderMesh_jdqc7")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
 
+[node name="4button" type="MeshInstance3D" parent="World/Elevator/Wall5/button2/MeshInstance3D"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_way5d")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
+
+[node name="GHIbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button2/MeshInstance3D"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.0597031, -0.947983, -0.949705, 0.0016534, 0.313141, -0.229602, -1.18638, -0.0080986)
+mesh = SubResource("TextMesh_uma0b")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ekde")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Elevator/Wall5/button2"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
 
+[node name="5button" type="MeshInstance3D" parent="World/Elevator/Wall5/button2/MeshInstance3D2"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_r1ssi")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
+
+[node name="JKLbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button2/MeshInstance3D2"]
+transform = Transform3D(-0.017128, 0.998217, -0.0572171, -0.312678, -0.0597031, -0.947984, -0.949705, 0.0016534, 0.313141, -0.229602, -1.18638, -0.0556908)
+mesh = SubResource("TextMesh_jw5b1")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ekde")
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Elevator/Wall5/button2"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="MNObutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button2/MeshInstance3D3"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.0597031, -0.947983, -0.949705, 0.0016534, 0.313141, -0.229602, -1.18638, -0.0080986)
+mesh = SubResource("TextMesh_vttuj")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ekde")
+
+[node name="5button" type="MeshInstance3D" parent="World/Elevator/Wall5/button2/MeshInstance3D3"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_uejwq")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
 
 [node name="button3" type="StaticBody3D" parent="World/Elevator/Wall5"]
 transform = Transform3D(0.999288, 0, 0, -5.62483e-23, 0.999288, -1.90429e-22, 8.88178e-16, 4.34399e-22, 0.999288, -0.0419855, -0.0292218, 0.0345802)
@@ -219,11 +363,31 @@ transform = Transform3D(-1.55918e-09, -0.0784702, -9.9476e-14, 0.0356698, -3.430
 mesh = SubResource("CylinderMesh_jdqc7")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
 
+[node name="7button" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_swdua")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
+
+[node name="PQRSbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.0597031, -0.947983, -0.949705, 0.0016534, 0.313141, -0.229602, -1.18638, -0.0080986)
+mesh = SubResource("TextMesh_wufyk")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ekde")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="World/Elevator/Wall5/button3"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.26121e-13, 0.0356698, -3.43004e-09, -1.02028e-22, 4.1359e-23, -9.4369e-16, 0.0254264, 0.513999, -0.08, -0.447)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="TUVbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D2"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.0597031, -0.947983, -0.949705, 0.0016534, 0.313141, -0.229602, -1.18638, -0.0080986)
+mesh = SubResource("TextMesh_vlw0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ekde")
+
+[node name="8button" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D2"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_vjgj5")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="World/Elevator/Wall5/button3"]
 transform = Transform3D(-1.55918e-09, -0.0784702, -1.1191e-13, 0.0356698, -3.43004e-09, -9.12743e-23, 4.1359e-23, -9.4369e-16, 0.0254264, 0.515, -0.08, -0.495)
@@ -231,11 +395,26 @@ mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
 
+[node name="9button" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D3"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_8h2h6")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
+
+[node name="WXYZbutton" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D3"]
+transform = Transform3D(-0.017128, 0.998216, -0.057217, -0.312678, -0.0597031, -0.947983, -0.949705, 0.0016534, 0.313141, -0.229602, -1.18638, -0.0080986)
+mesh = SubResource("TextMesh_mhe2j")
+surface_material_override/0 = SubResource("StandardMaterial3D_7ekde")
+
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="World/Elevator/Wall5/button3"]
-transform = Transform3D(-1.55918e-09, -0.0784702, -1.36779e-13, 0.0356698, -3.43004e-09, -1.10299e-22, 3.72231e-23, -9.4369e-16, 0.0254264, 0.513414, -0.129968, -0.446644)
+transform = Transform3D(-1.55918e-09, -0.0784702, -1.36779e-13, 0.0356698, -3.43004e-09, -1.10299e-22, 3.68095e-23, -9.4369e-16, 0.0254264, 0.513414, -0.129968, -0.446644)
 mesh = SubResource("CylinderMesh_jdqc7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_heey6")
+
+[node name="9button" type="MeshInstance3D" parent="World/Elevator/Wall5/button3/MeshInstance3D4"]
+transform = Transform3D(-0.017128, 0.998215, -0.0572169, -0.312677, -0.0597029, -0.947982, -0.949705, 0.0016534, 0.313141, 0.179991, -1.18638, -0.0295687)
+mesh = SubResource("TextMesh_vd2qo")
+surface_material_override/0 = SubResource("StandardMaterial3D_us4rb")
 
 [node name="helpbutton" type="StaticBody3D" parent="World/Elevator/Wall5"]
 transform = Transform3D(0.0342269, -3.54695e-21, -1.06581e-13, 3.10193e-25, 0.170577, 2.27941e-22, 4.16334e-17, -1.45114e-24, 0.138104, 0.497522, -0.226693, -0.412918)
